@@ -160,9 +160,9 @@ for proveedor in proveedores:
         break
 
     # Espera para pruebas
-    wait_time = random.uniform(3, 6)
-    print(f"⏱ Esperando {wait_time:.1f} segundos...\n")
-    time.sleep(wait_time)
+    wait_time = random.uniform(120, 240)
+    print(f"⏱ Esperando {wait_time/60:.2f} minutos...\n")
+    time.sleep(wait_time)    
 
 # ------------------------------
 # Enviar correo de reporte FINAL
