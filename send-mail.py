@@ -14,16 +14,15 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 DATA_DIR = os.path.join(BASE_DIR, "data")
 HTML_DIR = os.path.join(BASE_DIR, "html")
+EXCEL_DIR = os.path.join(BASE_DIR, "providers")
+# Carpeta PDFs
+PDF_DIR = os.path.join(BASE_DIR, "pdf")
 
 data_path = os.path.join(DATA_DIR, "data.json")
 subject_path = os.path.join(DATA_DIR, "subject.json")
 
 # Excel proveedores
-EXCEL_PATH = r"C:\Users\andres.lopez.JDELECTRICOS\Documents\codes\send-mails-certificados-retenciones\providers\datos-proveedores.xlsx"
-
-# Carpeta PDFs
-PDF_DIR = r"C:\Users\andres.lopez.JDELECTRICOS\Documents\codes\send-mails-certificados-retenciones\pdf"
-
+EXCEL_PATH = os.path.join(EXCEL_DIR, "datos-proveedores.xlsx")
 # ------------------------------
 # Función para normalizar texto
 # ------------------------------
