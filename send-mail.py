@@ -105,14 +105,17 @@ for proveedor in proveedores:
     # ------------------------------
     # Buscar PDF correspondiente
     # ------------------------------
-    pdf_encontrado = None
-    for archivo in os.listdir(PDF_DIR):
-        if archivo.upper().endswith(".PDF") and archivo.upper().startswith(nombre_normalizado):
-            pdf_encontrado = os.path.join(PDF_DIR, archivo)
-            break
+    pdfs_encontrados = []
 
-    if not pdf_encontrado:
-        novedades.append(f"{nombre_proveedor}: no tiene documento PDF para enviar.")
+    for archivo in os.listdir(PDF_DIR):
+        if (
+            archivo.upper().endswith(".PDF")
+            and archivo.upper().startswith(nombre_normalizado)
+        ):
+            pdfs_encontrados.append(os.path.join(PDF_DIR, archivo))
+
+    if not pdfs_encontrados:
+        novedades.append(f"{nombre_proveedor}: no tiene documentos PDF para enviar.")
         continue
 
     # ------------------------------
@@ -132,13 +135,20 @@ for proveedor in proveedores:
     mail.To = correo_proveedor
     mail.Subject = subject
     mail.HTMLBody = html_content
-    mail.Attachments.Add(pdf_encontrado)
+    # Adjuntar TODOS los PDFs
+    for pdf in pdfs_encontrados:
+        mail.Attachments.Add(pdf)
 
     mail.Send()
     correos_enviados += 1
 
     print(f"✔ Enviado a: {nombre_proveedor} -> {correo_proveedor}")
-    print(f"📎 PDF adjunto: {os.path.basename(pdf_encontrado)}")
+    print(f"📎 PDFs adjuntos: {len(pdfs_encontrados)}")
+
+    if len(pdfs_encontrados) > 1:
+        novedades.append(
+            f"{nombre_proveedor}: se enviaron {len(pdfs_encontrados)} documentos PDF."
+        )
 
     # ------------------------------
     # Límite horario 5:30 PM
