@@ -183,10 +183,10 @@ reporte.append("\nEl proceso de envío ha finalizado correctamente.")
 reporte_texto = "\n".join(reporte)
 
 mail_reporte = outlook.CreateItem(0)
-mail_reporte.To = "abicdev26@gmail.com"
+mail_reporte.To = "asistente1@jdelectricos.com.co"
 mail_reporte.Subject = "reporte envio correo de retenciones"
 mail_reporte.Body = reporte_texto
 mail_reporte.Send()
 
-print("📧 Correo de reporte enviado a abicdev26@gmail.com")
+print("📧 Correo de reporte enviado a asistente1@jdelectricos.com.co")
 print("\n🎉 Proceso finalizado.")
